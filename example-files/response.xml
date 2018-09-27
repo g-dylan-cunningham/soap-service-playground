@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetCourseDetailsResponse xmlns="http://in23minutes.com/courses">
+	<CourseDetails>
+		<id>123</id>
+		<name>Spring in28mintues</name>
+		<description>Learn the basics here</description>
+	</CourseDetails>
+</GetCourseDetailsResponse>
