@@ -36,19 +36,23 @@ public class CourseDetailsEndpoint {
 	@ResponsePayload
 	public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
 		
-		// here's the response using our service
-		GetCourseDetailsResponse response = new GetCourseDetailsResponse();
-		Course course = service.findById(request.getId());
-		CourseDetails courseDetails = new CourseDetails();
-		courseDetails.setId(course.getId());
-		courseDetails.setName(course.getName());
-		courseDetails.setDescription(course.getDescription());
-		response.setCourseDetails(courseDetails);
-		return response;
+		// 3. here's the implementation using after extracting a mapper function
+		Course course = service.findById(request.getId());	
+		return mapCourse(course);
+		
+//		// 2. here's the response using our service
+//		GetCourseDetailsResponse response = new GetCourseDetailsResponse();
+//		Course course = service.findById(request.getId());
+//		CourseDetails courseDetails = new CourseDetails();
+//		courseDetails.setId(course.getId());
+//		courseDetails.setName(course.getName());
+//		courseDetails.setDescription(course.getDescription());
+//		response.setCourseDetails(courseDetails);
+//		return response;
 		
 		
 		
-		// this was the initial hardcoded response
+		// 1. this was the initial hardcoded response
 //		GetCourseDetailsResponse response = new GetCourseDetailsResponse();
 //		CourseDetails courseDetails = new CourseDetails();
 //		courseDetails.setId(request.getId());
@@ -56,6 +60,16 @@ public class CourseDetailsEndpoint {
 //		courseDetails.setDescription("That would be a wonderful course wouldn't it?");
 //		response.setCourseDetails(courseDetails);
 //		return response;
+	}
+
+	private GetCourseDetailsResponse mapCourse(Course course) {
+		GetCourseDetailsResponse response = new GetCourseDetailsResponse();
+		CourseDetails courseDetails = new CourseDetails();
+		courseDetails.setId(course.getId());
+		courseDetails.setName(course.getName());
+		courseDetails.setDescription(course.getDescription());
+		response.setCourseDetails(courseDetails);
+		return response;
 	}
 	
 }
